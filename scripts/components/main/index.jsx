@@ -86,8 +86,13 @@ export const Main =()=>{
     
     
     return(
-        <section >
-             
+        <section style={{width:'100%'}}>
+            <h2>Selected dates</h2>
+
+            <input type="date" onChange={(date)=>setStartSelectedDate(`${date.target.valueAsDate.getFullYear()}-${date.target.valueAsDate.getMonth()+1}-${date.target.valueAsDate.getDate()}`)} ></input>
+            <input type="date" onChange={(date)=>setEndSelectedDate(`${date.target.valueAsDate.getFullYear()}-${date.target.valueAsDate.getMonth()+1}-${date.target.valueAsDate.getDate()}`)} ></input>
+            
+            <h1>{value}</h1>
             <select id="select" onChange={()=>getValue(()=>{return document.getElementById('select').value})}>
                 {
                     mainData.map((item,index)=>{
@@ -97,10 +102,7 @@ export const Main =()=>{
                     }) 
                 }
             </select>
-            <input type="date" onChange={(date)=>setStartSelectedDate(`${date.target.valueAsDate.getFullYear()}-${date.target.valueAsDate.getMonth()+1}-${date.target.valueAsDate.getDate()}`)} ></input>
-            <input type="date" onChange={(date)=>setEndSelectedDate(`${date.target.valueAsDate.getFullYear()}-${date.target.valueAsDate.getMonth()+1}-${date.target.valueAsDate.getDate()}`)} ></input>
-            <h1>{value}</h1>
-           
+
             <table >
                  <thead>
                     <tr >
