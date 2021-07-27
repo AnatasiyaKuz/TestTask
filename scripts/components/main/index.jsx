@@ -87,7 +87,7 @@ export const Main =()=>{
     
     return(
         <section style={{width:'100%'}}>
-            <h2>Selected dates</h2>
+            <h2>Select dates</h2>
 
             <input type="date" onChange={(date)=>setStartSelectedDate(`${date.target.valueAsDate.getFullYear()}-${date.target.valueAsDate.getMonth()+1}-${date.target.valueAsDate.getDate()}`)} ></input>
             <input type="date" onChange={(date)=>setEndSelectedDate(`${date.target.valueAsDate.getFullYear()}-${date.target.valueAsDate.getMonth()+1}-${date.target.valueAsDate.getDate()}`)} ></input>
