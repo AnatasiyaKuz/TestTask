@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '/css/styles.css'
 import 'react-datepicker/dist/react-datepicker.css'
+import {Line} from 'react-chartjs-2';
 
 export const Main =()=>{
    const [mainData,setMainData]=useState([]);
@@ -11,6 +12,8 @@ export const Main =()=>{
    const [cur_Abbreviation,setCur_Abbreviation]=useState()
    const [startSelectedDate,setStartSelectedDate]=useState(new Date());
    const [endSelectedDate,setEndSelectedDate]=useState(new Date())
+
+    
 
     useEffect(()=>{
         
@@ -42,12 +45,45 @@ export const Main =()=>{
             })
 
     },[startSelectedDate,endSelectedDate,cur_id])
-
-    
-    
     const getValue=(Cur_Name)=>{
         setValue(Cur_Name);
     }
+    let OX = [];
+    let OY = [];
+    cur_data.map((item,index)=>{
+        OX.push(item.Date);
+        OY.push(item.Cur_OfficialRate)
+    })
+
+    const datas={
+        labels:OX,
+        datasets:[
+            {
+                label:'currency rate ',
+                data: OY,
+                fill:false,
+                backgroundColor:'rgb(255,99,132)',
+                borderColor:'rgba(255,99,132,8.2)',
+            },
+        ],
+    } 
+    const options ={
+        scales:{
+            yAxes:[
+                {
+                    ticks:{
+                        beginAtZero:true,
+                    }
+                }
+            ]
+        }
+    }
+
+    
+    console.log(datas.labels)
+    
+    
+    
     
     return(
         <section >
@@ -91,6 +127,9 @@ export const Main =()=>{
                     </tr>
                 </tbody>
             </table>
+            <div>
+                 <Line data={datas} option={options} />
+            </div>
         </section>
     )
 
